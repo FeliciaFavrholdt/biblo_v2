@@ -6,8 +6,15 @@ public class Book {
     private String title;
     private String author;
 
+    // CONSTRUCTOR - from DB to object
     public Book(int bookID, String title, String author) {
         this.bookID = bookID;
+        this.title = title;
+        this.author = author;
+    }
+
+    // CONSTRUCTOR - from object to DB (first time)
+    public Book(String title, String author) {
         this.title = title;
         this.author = author;
     }
