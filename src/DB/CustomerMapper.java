@@ -25,7 +25,7 @@ public class CustomerMapper {
 
                 int customerId = resultSet.getInt(1);
                 customer.setCustomerID(customerId);
-                System.out.println(customerId);
+                //System.out.println(customer.toString());
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
