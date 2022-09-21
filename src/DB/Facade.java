@@ -1,7 +1,6 @@
 package DB;
 
 import Entity.Book;
-
 import java.sql.SQLException;
 import java.util.List;
 
@@ -11,7 +10,6 @@ public class Facade {
         return BookMapper.addBook(book);
     }
 
-
     public static List<Book> fetchBooks() {
         return BookMapper.fetchBooks();
     }
@@ -19,4 +17,5 @@ public class Facade {
     public static String deleteBook(int bookID) {
         return BookMapper.deleteBook(bookID);
     }
+
 }

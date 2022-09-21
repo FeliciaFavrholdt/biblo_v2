@@ -5,18 +5,19 @@ public class Customer {
     private int customerID;
     private String customerName;
     private int postalCode;
-    private int Address;
+    private String Address;
 
     // CONSTRUCTOR - from DB to object
-    public Customer(int customerID, String customerName, int postalCode, int address) {
+    public Customer(int customerID, String customerName, int postalCode, String address) {
         this.customerID = customerID;
         this.customerName = customerName;
         this.postalCode = postalCode;
         Address = address;
     }
 
+
     // CONSTRUCTOR - from object to DB (first time)
-    public Customer(String customerName, int postalCode, int address) {
+    public Customer(String customerName, int postalCode, String address) {
         this.customerName = customerName;
         this.postalCode = postalCode;
         Address = address;
@@ -46,11 +47,11 @@ public class Customer {
         this.postalCode = postalCode;
     }
 
-    public int getAddress() {
+    public String getAddress() {
         return Address;
     }
 
-    public void setAddress(int address) {
+    public void setAddress(String address) {
         Address = address;
     }
 
@@ -60,7 +61,7 @@ public class Customer {
                 "customerID=" + customerID +
                 ", customerName='" + customerName + '\'' +
                 ", postalCode=" + postalCode +
-                ", Address=" + Address +
+                ", Address='" + Address + '\'' +
                 '}';
     }
 }
