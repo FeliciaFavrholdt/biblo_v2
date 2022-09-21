@@ -11,7 +11,6 @@ public class Facade {
         return BookMapper.addBook(book);
     }
 
-
     public static List<Book> fetchBooks() {
         return BookMapper.fetchBooks();
     }
