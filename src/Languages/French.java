@@ -1,11 +1,20 @@
 package Languages;
 
-import DB.ConnectionConfiguration;
+import DB.Facade;
+import Entity.Book;
+import Methods.Books;
 import MyUtil.UserInput;
 
-public class French implements LanguageController {
+import java.util.List;
 
-    private static String bullet = "\u2022";
+public class French implements LanguageController {
+    private List<Book> bookList = Facade.fetchBooks();
+
+    private static final String bullet = "\u2022";
+    private static final Books books = new Books();
+//    private static final BookRentals bookRentals = new BookRentals();
+//    private static final Customers customers = new Customers();
+
 
     @Override
     public void allMenus() {
@@ -16,7 +25,7 @@ public class French implements LanguageController {
                 "\n" + bullet + " 2 = Livres" +
                 "\n" + bullet + " 3 = Louer un Livres\n";
 
-        while (true) {
+        try {
             input = UserInput.getInt(s);
             switch (input) {
                 case 1 -> customerMenu();
@@ -24,8 +33,10 @@ public class French implements LanguageController {
                 case 3 -> bookRentalMenu();
                 default -> System.out.println("Excuse-moi il'sappelle une croissant oui oui");
             }
-            ConnectionConfiguration.closeConnection(ConnectionConfiguration.getConnection());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+        allMenus();
     }
 
     @Override
@@ -39,18 +50,20 @@ public class French implements LanguageController {
                 "\n" + bullet + " 5 = Montrez-moi le contenu de votre peuple de gressins\n";
 
 
-        while (true) {
+        try {
             input = UserInput.getInt(s);
             switch (input) {
-//                case 1 -> facade.addCustomer();
-//                case 2 -> facade.updateCustomer();
-//                case 3 -> facade.deleteCustomer();
-//                case 4 -> facade.showCustomerNames();
-//                case 5 -> facade.showAllCustomerData();
+                case 1 -> System.out.println("addCustomer");
+                case 2 -> System.out.println("updateCustomer");
+                case 3 -> System.out.println("deleteCustomer");
+                case 4 -> System.out.println("showCustomerNames");
+                case 5 -> System.out.println("showAllCustomerData");
                 default -> System.out.println("Tu as merdé, espèce d'œuf. réessayer");
             }
-            allMenus();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+        allMenus();
     }
 
     @Override
@@ -62,17 +75,20 @@ public class French implements LanguageController {
                 "\n" + bullet + " 3 = J'apprécie le jus de haricots noirs rôtis le matin" +
                 "\n" + bullet + " 4 = Tout montrer!\n";
 
-        while (true) {
+
+        try {
             input = UserInput.getInt(s);
             switch (input) {
-//                case 1 -> facade.addBook();
-//                case 2 -> facade.updateBooks();
-//                case 3 -> facade.deleteBook();
-//                case 4 -> facade.showBooks();
+                case 1 -> books.addBook();
+                case 2 -> books.updateBooks();
+                case 3 -> books.deleteBook();
+                case 4 -> books.showBooks(bookList);
                 default -> System.out.println("Réessayez .. espèce de crétin");
             }
-            allMenus();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+        allMenus();
     }
 
     @Override
@@ -84,15 +100,17 @@ public class French implements LanguageController {
 
 
         input = UserInput.getInt(s);
-        while (true) {
+        try {
             switch (input) {
-                //case 1 -> facade.bookRental();
-                //case 2 -> facade.showBooksRentedView();
-//                case 3 -> facade.returnBook();            //TODO: EVT EKSTRA ARBEJDE
-//                case 4 -> facade.deleteBookRental();
+                case 1 -> System.out.println("bookRental");
+                case 2 -> System.out.println("showBooksRentedView");
+                case 3 -> System.out.println("returnBook");
+                case 4 -> System.out.println("deleteBookRental");
                 default -> System.out.println("Réessaye mon dieu");
             }
-            allMenus();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+        allMenus();
     }
 }

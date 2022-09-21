@@ -14,7 +14,7 @@ public class ConnectionConfiguration {
     public static Connection getConnection() {
 
         if (pass == null) {
-            pass = UserInput.getString("Angiv password");
+            pass = UserInput.getString("Password");
         }
 
         Connection connection = null;

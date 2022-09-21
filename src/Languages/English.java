@@ -1,12 +1,21 @@
 package Languages;
 
-import DB.ConnectionConfiguration;
+import DB.Facade;
+import Entity.Book;
+import Methods.Books;
 import MyUtil.UserInput;
+
+import java.util.List;
 
 public class English implements LanguageController {
 
-    private static String bullet = "\u2022";
+    private List<Book> bookList = Facade.fetchBooks();
+    private static final String bullet = "\u2022";
+    private static final Books books = new Books();
+//    private static final BookRentals bookRentals = new BookRentals();
+//    private static final Customers customers = new Customers();
 
+    @Override
     public void allMenus() {
         int input;
         String s = "\nMain Menu - Library" +
@@ -15,18 +24,17 @@ public class English implements LanguageController {
                 "\n" + bullet + " 2 = Books" +
                 "\n" + bullet + " 3 = Book Rentals\n";
 
-        while (true) {
-            input = UserInput.getInt(s);
-            switch (input) {
-                case 1 -> customerMenu();
-                case 2 -> booksMenu();
-                case 3 -> bookRentalMenu();
-                default -> System.out.println("Something went wrong.. Try again");
-            }
-            ConnectionConfiguration.closeConnection(ConnectionConfiguration.getConnection());
+        input = UserInput.getInt(s);
+        switch (input) {
+            case 1 -> customerMenu();
+            case 2 -> booksMenu();
+            case 3 -> bookRentalMenu();
+            default -> System.out.println("Something went wrong.. Try again");
         }
+        allMenus();
     }
 
+    @Override
     public void customerMenu() {
         int input;
         String s = "\nCustomer Menu: " +
@@ -37,39 +45,40 @@ public class English implements LanguageController {
                 "\n" + bullet + " 5 = show all customer data\n";
 
 
-        while (true) {
-            input = UserInput.getInt(s);
-            switch (input) {
-//                    case 1 -> facade.addCustomer();
-//                    case 2 -> facade.updateCustomer();
-//                    case 3 -> facade.deleteCustomer();
-//                    case 4 -> facade.showCustomerNames();
-//                    case 5 -> facade.showAllCustomerData();
-                default -> System.out.println("Something went wrong.. Try again");
-            }
-            allMenus();
+        input = UserInput.getInt(s);
+        switch (input) {
+            case 1 -> System.out.println("addCustomer");
+            case 2 -> System.out.println("updateCustomer");
+            case 3 -> System.out.println("deleteCustomer");
+            case 4 -> System.out.println("showCustomerNames");
+            case 5 -> System.out.println("showAllCustomerData");
+            default -> System.out.println("Something went wrong.. Try again");
         }
+        allMenus();
     }
 
+    @Override
     public void booksMenu() {
         int input;
-        String s = "\nBooks Menu: " +
+        String s = "\nMethods.Books Menu: " +
                 "\n" + bullet + " 1 = add new book" +
                 "\n" + bullet + " 2 = update book data" +
                 "\n" + bullet + " 3 = delete a book" +
                 "\n" + bullet + " 4 = show all books\n";
 
-        while (true) {
+        try {
             input = UserInput.getInt(s);
             switch (input) {
-//                    case 1 -> facade.addBook();
-//                    case 2 -> facade.updateBooks();
-//                    case 3 -> facade.deleteBook();
-//                    case 4 -> facade.showBooks();
+                case 1 -> books.addBook();
+                case 2 -> books.updateBooks();
+                case 3 -> books.deleteBook();
+                case 4 -> books.showBooks(bookList);
                 default -> System.out.println("Something went wrong.. Try again");
             }
-            allMenus();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+        allMenus();
     }
 
     public void bookRentalMenu() {
@@ -78,20 +87,17 @@ public class English implements LanguageController {
                 "\n" + bullet + " 1 = Rent out a book" +
                 "\n" + bullet + " 2 = Show all rented books\n";
 
-        //+ //TODO: EVT, LAV EN RETUNÉR BOOK/ DELETE BOOK
-//                "\n" + bullet + " 3 = return a book" +
-//                "\n" + bullet + " 4 = ";
-//
         input = UserInput.getInt(s);
-        while (true) {
+        try {
             switch (input) {
-//                    case 1 -> facade.bookRental();
-//                    case 2 -> facade.showBooksRentedView();
-////                case 3 -> facade.returnBook();            //TODO: EVT EKSTRA ARBEJDE
-////                case 4 -> facade.deleteBookRental();
+                case 1 -> System.out.println("bookRental");
+                case 2 -> System.out.println("showBooksRentedView");
+                case 3 -> System.out.println("returnBook");
+                case 4 -> System.out.println("deleteBookRental");
                 default -> System.out.println("Something went wrong.. Try again");
             }
-            allMenus();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

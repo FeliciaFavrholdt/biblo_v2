@@ -2,6 +2,7 @@ package DB;
 
 import DB.ConnectionConfiguration;
 import Entity.Book;
+import MyUtil.UserInput;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -37,7 +38,6 @@ public class BookMapper {
     }
 
     protected static List<Book> fetchBooks() {
-
         List<Book> bookList = new LinkedList<>();
         String sql = "select * from Books";
 
@@ -66,7 +66,8 @@ public class BookMapper {
     protected static String deleteBook(int bookID) {
         String sql = "delete from Books where BookID = ?";
 
-        try (Connection con = ConnectionConfiguration.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+        try (Connection con = ConnectionConfiguration.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql);) {
             ps.setInt(1, bookID);
             int res = ps.executeUpdate();
             if (res > 0) {
@@ -76,5 +77,9 @@ public class BookMapper {
             e.printStackTrace();
         }
         return "A book with the id " + "\"" + bookID + "\"" + " was not found";
+    }
+
+    public static void updateBooks() {
+        System.out.println("Something went wrong");
     }
 }

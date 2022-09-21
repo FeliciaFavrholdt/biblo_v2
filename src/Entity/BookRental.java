@@ -55,11 +55,11 @@ public class BookRental {
 
     @Override
     public String toString() {
-        return "BookRental{" +
-                "bookRentalID=" + bookRentalID +
-                ", customerID=" + customerID +
-                ", booksID=" + booksID +
-                ", date='" + date + '\'' +
+        return "BookRental {" +
+                "bookRentalID = " + bookRentalID +
+                ", customerID = " + customerID +
+                ", booksID = " + booksID +
+                ", date = '" + date + '\'' +
                 '}';
     }
 }

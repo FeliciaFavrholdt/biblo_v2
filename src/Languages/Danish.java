@@ -1,10 +1,20 @@
 package Languages;
 
-import DB.ConnectionConfiguration;
+import DB.Facade;
+import Entity.Book;
+import Methods.Books;
 import MyUtil.UserInput;
 
+import java.util.List;
+
 public class Danish implements LanguageController {
-    private static String bullet = "\u2022";
+
+    private static final String bullet = "\u2022";
+    private List<Book> bookList = Facade.fetchBooks();
+
+    private static final Books books = new Books();
+//    private static BookRentals bookRentals = new BookRentals();
+//    private static Customers customers = new Customers();
 
     @Override
     public void allMenus() {
@@ -15,7 +25,7 @@ public class Danish implements LanguageController {
                 "\n" + bullet + " 2 = Bøger" +
                 "\n" + bullet + " 3 = Bog Udlån\n";
 
-        while (true) {
+        try {
             input = UserInput.getInt(s);
             switch (input) {
                 case 1 -> customerMenu();
@@ -23,8 +33,10 @@ public class Danish implements LanguageController {
                 case 3 -> bookRentalMenu();
                 default -> System.out.println("Fejl i input -- Venligt prøv igen..");
             }
-            ConnectionConfiguration.closeConnection(ConnectionConfiguration.getConnection());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+        allMenus();
     }
 
     @Override
@@ -37,19 +49,20 @@ public class Danish implements LanguageController {
                 "\n" + bullet + " 4 = Vis alle registreret Kundenavne" +
                 "\n" + bullet + " 5 = Vis alt registreret KundeData\n";
 
-
-        while (true) {
+        try {
             input = UserInput.getInt(s);
             switch (input) {
-//                case 1 -> facade.addCustomer();
-//                case 2 -> facade.updateCustomer();
-//                case 3 -> facade.deleteCustomer();
-//                case 4 -> facade.showCustomerNames();
-//                case 5 -> facade.showAllCustomerData();
+                case 1 -> System.out.println("addCustomer");
+                case 2 -> System.out.println("updateCustomer");
+                case 3 -> System.out.println("deleteCustomer");
+                case 4 -> System.out.println("showCustomerNames");
+                case 5 -> System.out.println("showAllCustomerData");
                 default -> System.out.println("Fejl i input -- Venligst prøv igen..");
             }
-            allMenus();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+        allMenus();
     }
 
     @Override
@@ -61,17 +74,19 @@ public class Danish implements LanguageController {
                 "\n" + bullet + " 3 = Slet en Bog" +
                 "\n" + bullet + " 4 = Vis alle bøger\n";
 
-        while (true) {
+        try {
             input = UserInput.getInt(s);
             switch (input) {
-//                case 1 -> facade.addBook();
-//                case 2 -> facade.updateBooks();
-//                case 3 -> facade.deleteBook();
-//                case 4 -> facade.showBooks();
+                case 1 -> books.addBook();
+                case 2 -> books.updateBooks();
+                case 3 -> books.deleteBook();
+                case 4 -> books.showBooks(bookList);
                 default -> System.out.println("Fejl i input -- Venligst prøv igen..");
             }
-            allMenus();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+        allMenus();
     }
 
     @Override
@@ -81,20 +96,14 @@ public class Danish implements LanguageController {
                 "\n" + bullet + " 1 = Lej en Bog" +
                 "\n" + bullet + " 2 = Vis alle Udlejet Bøger\n";
 
-        //+ //TODO: EVT, LAV EN RETUNÉR BOOK/ DELETE BOOK
-//                "\n" + bullet + " 3 = return a book" +
-//                "\n" + bullet + " 4 = ";
-//
         input = UserInput.getInt(s);
-        while (true) {
-            switch (input) {
-//                case 1 -> facade.bookRental();
-//                case 2 -> facade.showBooksRentedView();
-//                case 3 -> facade.returnBook();            //TODO: EVT EKSTRA ARBEJDE
-//                case 4 -> facade.deleteBookRental();
-                default -> System.out.println("Fejl i input -- Venligst prøv igen..");
-            }
-            allMenus();
+        switch (input) {
+            case 1 -> System.out.println("book rental");
+            case 2 -> System.out.println("showBooksRentedView");
+            case 3 -> System.out.println("returnBook");
+            case 4 -> System.out.println("deleteBookRental");
+            default -> System.out.println("Fejl i input -- Venligst prøv igen..");
         }
+        allMenus();
     }
 }

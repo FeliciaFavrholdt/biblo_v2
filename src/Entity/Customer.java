@@ -57,11 +57,11 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "customerID=" + customerID +
-                ", customerName='" + customerName + '\'' +
-                ", postalCode=" + postalCode +
-                ", Address='" + Address + '\'' +
+        return "Customer {" +
+                "customerID = " + customerID +
+                ", customerName = '" + customerName + '\'' +
+                ", postalCode = " + postalCode +
+                ", Address = '" + Address + '\'' +
                 '}';
     }
 }

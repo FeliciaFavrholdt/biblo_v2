@@ -1,5 +1,10 @@
 package Languages;
 
+import Entity.Book;
+
+import java.sql.SQLException;
+import java.util.List;
+
 public interface LanguageController {
 
     // This interface is used as a Language controller switching
@@ -8,6 +13,8 @@ public interface LanguageController {
 
     void allMenus();
     void customerMenu();
+
     void booksMenu();
+
     void bookRentalMenu();
 }

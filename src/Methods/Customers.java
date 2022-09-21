@@ -1,3 +1,5 @@
+package Methods;
+
 import java.sql.SQLException;
 
 public class Customers {

@@ -30,9 +30,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `biblo`.`Customers`
+-- Table `biblo`.`Methods.Customers`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `biblo`.`Customers` (
+CREATE TABLE IF NOT EXISTS `biblo`.`Methods.Customers` (
   `CustomerID` INT NOT NULL AUTO_INCREMENT,
   `CustomerName` VARCHAR(45) NOT NULL,
   `PostalCode` INT NOT NULL,
@@ -48,9 +48,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `biblo`.`Books`
+-- Table `biblo`.`Methods.Books`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `biblo`.`Books` (
+CREATE TABLE IF NOT EXISTS `biblo`.`Methods.Books` (
   `BookID` INT NOT NULL AUTO_INCREMENT,
   `Title` VARCHAR(45) NOT NULL,
   `Author` VARCHAR(45) NOT NULL,
@@ -73,12 +73,12 @@ CREATE TABLE IF NOT EXISTS `biblo`.`Bookrental` (
   INDEX `fk_Bookrental_Books1_idx` (`BookID` ASC) VISIBLE,
   CONSTRAINT `fk_Bookrental_Customers`
     FOREIGN KEY (`CustomerID`)
-    REFERENCES `biblo`.`Customers` (`CustomerID`)
+    REFERENCES `biblo`.`Methods.Customers` (`CustomerID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Bookrental_Books1`
     FOREIGN KEY (`BookID`)
-    REFERENCES `biblo`.`Books` (`BookID`)
+    REFERENCES `biblo`.`Methods.Books` (`BookID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
