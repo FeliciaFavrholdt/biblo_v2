@@ -4,10 +4,13 @@ import MyUtil.UserInput;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class ConnectionConfiguration {
 
     private static String pass = null;
+
+    // Method to create a connection to the SQL workbench
     public static Connection getConnection() {
 
         if (pass == null) {
@@ -24,5 +27,14 @@ public class ConnectionConfiguration {
             e.printStackTrace();
         }
         return connection;
+    }
+
+    // Method to close a connection to the SQL workbench
+    public static void closeConnection(Connection connection) {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
