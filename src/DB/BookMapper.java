@@ -25,6 +25,7 @@ public class BookMapper {
 
                 int bookId = resultSet.getInt(1);
                 book.setBookID(bookId);
+                //System.out.println(book.toString());
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

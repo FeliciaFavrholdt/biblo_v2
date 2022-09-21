@@ -1,17 +1,23 @@
 import DB.Facade;
 import Entity.Book;
+import MyUtil.UserInput;
 
 import java.sql.SQLException;
 
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
+    public static void main(String[] args) throws SQLException {
+        //Book book = new Book("title", "author", 2022, 10);
+        //Facade.addBook(book);
 
-        Book book = new Book("title", "author", 2022, 10);
-        try {
-            Facade.addBook(book);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        while (true) {
+            switch (UserInput.getString("Choose one // Add Book")) {
+                case "Add Book":
+                    Book book = new Book(UserInput.getString("Insert title"),
+                            UserInput.getString("Insert author"),
+                            UserInput.getInt("Insert release year"),
+                            UserInput.getInt("Insert version"));
+                    System.out.println("You have now added the book" + Facade.addBook(book).toString());
+            }
         }
     }
 }

@@ -9,4 +9,14 @@ public class UserInput {
         System.out.println(s + " : ");
         return scanner.nextLine();
     }
+
+    public static int getInt(String s) {
+        while (true) {
+            try {
+                return Integer.parseInt(getString(s));
+            } catch (NumberFormatException e) {
+                System.out.println("You need to enter a number, not words");
+            }
+        }
+    }
 }
