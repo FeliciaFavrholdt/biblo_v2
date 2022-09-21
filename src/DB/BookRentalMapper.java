@@ -1,4 +1,4 @@
-package DB.Mapper;
+package DB;
 
 import DB.ConnectionConfiguration;
 import Entity.Book;
