@@ -1,6 +1,9 @@
 package DB;
 
 import Entity.Book;
+import Entity.BookRental;
+import Entity.Customer;
+
 import java.sql.SQLException;
 import java.util.List;
 
