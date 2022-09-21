@@ -1,6 +1,8 @@
 package DB;
 
 import Entity.Book;
+import Entity.BookRental;
+import Entity.Customer;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class Facade {
         return CustomerMapper.fetchCustomers();
     }
 
-    public static String deleteCustomer(int CustomerID) {
+    public static String deleteCustomer(int customerID) {
         return CustomerMapper.deleteCustomer(customerID);
     }
 
