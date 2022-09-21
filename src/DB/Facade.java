@@ -18,7 +18,7 @@ public class Facade {
         return BookMapper.deleteBook(bookID);
     }
 
-    public static void updateBooks() {
-        BookMapper.updateBooks();
+    public static String updateBooks(Book book, int bookID) throws SQLException {
+        return BookMapper.updateBooks(book);
     }
 }

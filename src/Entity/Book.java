@@ -37,32 +37,36 @@ public class Book {
         return title;
     }
 
-    public void setTitle(String title) {
+    public String setTitle(String title) {
         this.title = title;
+        return title;
     }
 
     public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public String setAuthor(String author) {
         this.author = author;
+        return author;
     }
 
     public int getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(int releaseYear) {
+    public int setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
+        return releaseYear;
     }
 
     public int getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public int setVersion(int version) {
         this.version = version;
+        return version;
     }
 
     @Override

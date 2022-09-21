@@ -53,7 +53,6 @@ public class BookMapper {
                 int releaseYear = resultSet.getInt("ReleaseYear");
                 int version = resultSet.getInt("Version");
 
-
                 Book book = new Book(bookID, title, author, releaseYear, version);
                 bookList.add(book);
             }
@@ -71,7 +70,7 @@ public class BookMapper {
             ps.setInt(1, bookID);
             int res = ps.executeUpdate();
             if (res > 0) {
-                return "Book with ID " + "\"" + bookID + "\"" + " has now been deleted";
+                System.out.println("Book with ID " + "\"" + bookID + "\"" + " has now been deleted");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -79,7 +78,28 @@ public class BookMapper {
         return "A book with the id " + "\"" + bookID + "\"" + " was not found";
     }
 
-    public static void updateBooks() {
-        System.out.println("Something went wrong");
+    public static String updateBooks(Book book) throws SQLException {
+        String sql = "update Books set Title = ?, Author = ?, ReleaseYear = ?, version = ? where BookID = ?";
+
+        try (Connection con = ConnectionConfiguration.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+
+            try {
+                ps.setInt(5, UserInput.getInt("Which book ID should be updated?"));
+                ps.setString(1, book.setTitle(UserInput.getString("Update Title")));
+                ps.setString(2, book.setAuthor(UserInput.getString("Update Author")));
+                ps.setInt(3, book.setReleaseYear(UserInput.getInt("Update Release Year")));
+                ps.setInt(4, book.setVersion(UserInput.getInt("Update Version")));
+                int result = ps.executeUpdate();
+
+                if (result > 0) {
+                    System.out.println("The book's title has now been updated to"
+                            + "'" + book.getTitle() + "'");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return "A book with this ID does not exist.";
     }
 }

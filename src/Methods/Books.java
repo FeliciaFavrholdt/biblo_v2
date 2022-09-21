@@ -9,7 +9,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Books {
-    List<Book> bookList = Facade.fetchBooks();
 
     public void showBooks(List<Book> bookList) {
         for (Book book : bookList) {
@@ -21,12 +20,18 @@ public class Books {
         Facade.deleteBook(UserInput.getInt("Enter book ID"));
     }
 
-    public void updateBooks() {
-        Facade.updateBooks();
+    public void updateBooks(List<Book> bookList) throws SQLException {
+        for (Book book : bookList) {
+            Facade.updateBooks(book, book.getBookID());
+        }
     }
 
     public void addBook() throws SQLException {
-        Book book = new Book(UserInput.getString("Insert title"), UserInput.getString("Insert author"), UserInput.getInt("Insert release year"), UserInput.getInt("Insert version"));
+        Book book = new Book(
+                UserInput.getString("Insert title"),
+                UserInput.getString("Insert author"),
+                UserInput.getInt("Insert release year"),
+                UserInput.getInt("Insert version"));
         System.out.println("You have now added the book \n" + Facade.addBook(book).toString());
     }
 

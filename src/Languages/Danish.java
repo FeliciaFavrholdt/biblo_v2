@@ -78,7 +78,7 @@ public class Danish implements LanguageController {
             input = UserInput.getInt(s);
             switch (input) {
                 case 1 -> books.addBook();
-                case 2 -> books.updateBooks();
+                case 2 -> books.updateBooks(bookList);
                 case 3 -> books.deleteBook();
                 case 4 -> books.showBooks(bookList);
                 default -> System.out.println("Fejl i input -- Venligst prøv igen..");
