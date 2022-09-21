@@ -15,4 +15,8 @@ public class Facade {
     public static List<Book> fetchBooks() {
         return BookMapper.fetchBooks();
     }
+
+    public static String deleteBook(int bookID) {
+        return BookMapper.deleteBook(bookID);
+    }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BookMapper {
 
-    public static Book addBook(Book book) throws SQLException {
+    protected static Book addBook(Book book) throws SQLException {
 
         String sql = "INSERT INTO Books (Author, Title, ReleaseYear, Version) VALUES (?, ?, ?, ?)";
 
@@ -35,7 +35,7 @@ public class BookMapper {
         }
     }
 
-    public static List<Book> fetchBooks() {
+    protected static List<Book> fetchBooks() {
 
         List<Book> bookList = new LinkedList<>();
         String sql = "select * from Books";
@@ -60,5 +60,20 @@ public class BookMapper {
             throw new RuntimeException(e);
         }
         return bookList;
+    }
+
+    protected static String deleteBook(int bookID) {
+        String sql = "delete from Books where BookID = ?";
+
+        try (Connection con = ConnectionConfiguration.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+            ps.setInt(1, bookID);
+            int res = ps.executeUpdate();
+            if (res > 0) {
+                return "Book with ID " + "\"" + bookID + "\"" + " has now been deleted";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "A book with the id " + "\"" + bookID + "\"" + " was not found";
     }
 }

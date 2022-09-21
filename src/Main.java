@@ -14,7 +14,7 @@ public class Main {
         List<Book> bookList = new LinkedList<>();
 
         while (true) {
-            switch (UserInput.getString("Choose one // Add Book // Fetch Books")) {
+            switch (UserInput.getString("Choose one // Add Book // Fetch Books // Delete Book")) {
                 case "Add Book":
                     Book book = new Book(UserInput.getString("Insert title"), UserInput.getString("Insert author"), UserInput.getInt("Insert release year"), UserInput.getInt("Insert version"));
                     System.out.println("You have now added the book" + Facade.addBook(book).toString());
@@ -23,6 +23,10 @@ public class Main {
                 case "Fetch Books":
                     bookList = Facade.fetchBooks();
                     printBooks(bookList);
+                    break;
+                case "Delete Book":
+                    Facade.deleteBook(UserInput.getInt("Enter book ID"));
+
             }
         }
     }
