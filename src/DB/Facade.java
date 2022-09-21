@@ -17,5 +17,4 @@ public class Facade {
     public static String deleteBook(int bookID) {
         return BookMapper.deleteBook(bookID);
     }
-
 }
