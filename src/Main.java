@@ -50,6 +50,10 @@ public class Main {
                     Facade.deleteBook(UserInput.getInt("Enter book ID"));
             }
         }
+
+        public static void test() {
+            System.out.println("something");
+        }
     }
 
     public static void printBooks(List<Book> bookList) {
