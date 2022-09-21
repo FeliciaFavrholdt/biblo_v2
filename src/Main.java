@@ -1,16 +1,38 @@
 import DB.Facade;
 import Entity.Book;
 import MyUtil.UserInput;
-
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws SQLException {
-        //Book book = new Book("title", "author", 2022, 10);
-        //Facade.addBook(book);
 
+    private static String bullet = "\u2022";
+    public static void main(String[] args) throws SQLException {
+
+        mainMenu("Testing");
+    }
+
+    // Main menu - choose a language for the program DK, ENG, FR
+    public static void mainMenu(String ErrorMessage) {
+        int input;
+        System.out.println(ErrorMessage);
+        String s = "\nAnnouncement - Welcome to the Public Library" +
+                "\nPlease choose a language! // Veuillez choisir une langue! // Vælg sprog! " +
+                "\n" + bullet + " 1 = English // Anglais // Engelsk" +
+                "\n" + bullet + " 2 = French // Francais // Fransk" +
+                "\n" + bullet + " 3 = Danish // Danoise // Dansk\n";
+
+        input = UserInput.getInt(s);
+        switch (input) {
+            case 1 -> System.out.println("English menu");
+            case 2 -> System.out.println("French menu");
+            case 3 -> System.out.println("Danish menu");
+            default -> mainMenu("\n Error -- Please choose from the options available.");
+        }
+    }
+
+    public static void bookMenu() throws SQLException {
         List<Book> bookList = new LinkedList<>();
 
         while (true) {
@@ -26,7 +48,6 @@ public class Main {
                     break;
                 case "Delete Book":
                     Facade.deleteBook(UserInput.getInt("Enter book ID"));
-
             }
         }
     }

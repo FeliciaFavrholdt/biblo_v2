@@ -1,5 +1,6 @@
-package DB;
+package DB.Mapper;
 
+import DB.ConnectionConfiguration;
 import Entity.Book;
 
 import java.sql.*;
