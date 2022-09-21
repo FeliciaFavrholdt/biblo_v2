@@ -1,5 +1,8 @@
 package DB;
 
+import DB.Mapper.BookMapper;
+import DB.Mapper.BookRentalMapper;
+import DB.Mapper.CustomerMapper;
 import Entity.Book;
 import Entity.BookRental;
 import Entity.Customer;

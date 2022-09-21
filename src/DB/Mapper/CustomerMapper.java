@@ -1,5 +1,6 @@
-package DB;
+package DB.Mapper;
 
+import DB.ConnectionConfiguration;
 import Entity.Customer;
 import java.sql.*;
 import java.util.LinkedList;
