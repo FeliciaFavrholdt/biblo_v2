@@ -3,6 +3,8 @@ package DB;
 import Entity.Book;
 
 import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class BookMapper {
 
@@ -31,5 +33,32 @@ public class BookMapper {
             }
             return book;
         }
+    }
+
+    public static List<Book> fetchBooks() {
+
+        List<Book> bookList = new LinkedList<>();
+        String sql = "select * from Books";
+
+        try (Connection con = ConnectionConfiguration.getConnection();
+
+             PreparedStatement ps = con.prepareStatement(sql);) {
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                int bookID = resultSet.getInt("BookID");
+                String title = resultSet.getString("Title");
+                String author = resultSet.getString("Author");
+                int releaseYear = resultSet.getInt("ReleaseYear");
+                int version = resultSet.getInt("Version");
+
+
+                Book book = new Book(bookID, title, author, releaseYear, version);
+                bookList.add(book);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return bookList;
     }
 }

@@ -3,6 +3,7 @@ package DB;
 import Entity.Book;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class Facade {
 
@@ -11,4 +12,7 @@ public class Facade {
     }
 
 
+    public static List<Book> fetchBooks() {
+        return BookMapper.fetchBooks();
+    }
 }
