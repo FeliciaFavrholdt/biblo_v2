@@ -103,5 +103,10 @@ public class English implements LanguageController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        try {
+            allMenus();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

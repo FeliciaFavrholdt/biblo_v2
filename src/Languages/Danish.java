@@ -2,12 +2,14 @@ package Languages;
 
 import DB.Facade;
 import Entity.Book;
+import Entity.BookRental;
 import Entity.Customer;
 import Methods.BookRentals;
 import Methods.Books;
 import Methods.Customers;
 import MyUtil.UserInput;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class Danish implements LanguageController {
@@ -16,10 +18,10 @@ public class Danish implements LanguageController {
     private List<Book> bookList = Facade.fetchBooks();
     private List<Customer>customerList = Facade.fetchCustomers();
 
-
+    private List<BookRental>bookRentalList = Facade.fetchBookRentals();
     private static final Books books = new Books();
     private static final Customers c = new Customers();
-    private static BookRentals bookRentals = new BookRentals();
+    private static final BookRentals bookRentals = new BookRentals();
 
 
     @Override
@@ -101,10 +103,14 @@ public class Danish implements LanguageController {
                 "\n" + bullet + " 2 = Vis alle Udlejet Bøger\n";
 
         input = UserInput.getInt(s);
-        switch (input) {
-            case 1 -> System.out.println("book rental");
-            case 2 -> System.out.println("showBooksRentedView");
-            default -> System.out.println("Fejl i input -- Venligst prøv igen..");
+        try {
+            switch (input) {
+                case 1 -> bookRentals.addBookRental();
+                case 2 -> bookRentals.showBookRentals(bookRentalList);
+                default -> System.out.println("Something went wrong.. Try again");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         allMenus();
     }
