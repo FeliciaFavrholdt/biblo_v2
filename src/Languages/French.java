@@ -78,7 +78,6 @@ public class French implements LanguageController {
                 "\n" + bullet + " 3 = J'apprécie le jus de haricots noirs rôtis le matin" +
                 "\n" + bullet + " 4 = Tout montrer!\n";
 
-
         try {
             input = UserInput.getInt(s);
             switch (input) {
@@ -107,8 +106,6 @@ public class French implements LanguageController {
             switch (input) {
                 case 1 -> System.out.println("bookRental");
                 case 2 -> System.out.println("showBooksRentedView");
-                case 3 -> System.out.println("returnBook");
-                case 4 -> System.out.println("deleteBookRental");
                 default -> System.out.println("Réessaye mon dieu");
             }
         } catch (Exception e) {

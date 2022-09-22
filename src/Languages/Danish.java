@@ -104,8 +104,6 @@ public class Danish implements LanguageController {
         switch (input) {
             case 1 -> System.out.println("book rental");
             case 2 -> System.out.println("showBooksRentedView");
-            case 3 -> System.out.println("returnBook");
-            case 4 -> System.out.println("deleteBookRental");
             default -> System.out.println("Fejl i input -- Venligst prøv igen..");
         }
         allMenus();

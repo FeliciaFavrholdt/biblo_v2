@@ -95,8 +95,6 @@ public class English implements LanguageController {
             switch (input) {
                 case 1 -> System.out.println("bookRental");
                 case 2 -> System.out.println("showBooksRentedView");
-                case 3 -> System.out.println("returnBook");
-                case 4 -> System.out.println("deleteBookRental");
                 default -> System.out.println("Something went wrong.. Try again");
             }
         } catch (Exception e) {
