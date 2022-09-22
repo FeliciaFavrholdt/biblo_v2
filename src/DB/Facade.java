@@ -47,8 +47,8 @@ public class Facade {
         return BookRentalMapper.addBookRental(bookRental);
     }
 
-
     public static List<BookRental> fetchBookRentals() {
         return BookRentalMapper.fetchBookRentals();
     }
+
 }

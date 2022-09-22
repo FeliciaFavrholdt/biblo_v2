@@ -5,6 +5,7 @@ import Languages.Danish;
 import Languages.English;
 import Languages.French;
 import Languages.LanguageController;
+import Methods.Views;
 import MyUtil.UserInput;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -18,6 +19,8 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         mainMenu("");
         languageController.allMenus();
+        //Views views = new Views();
+        //views.showAllViews();
     }
 
     // Main menu - choose a language for the program DK, ENG, FR

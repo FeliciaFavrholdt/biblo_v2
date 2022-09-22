@@ -78,4 +78,6 @@ public class BookRentalMapper {
         }
         return "A book rental with the id " + "\"" + bookRentalID + "\"" + " was not found";
     }
+
+
 }
