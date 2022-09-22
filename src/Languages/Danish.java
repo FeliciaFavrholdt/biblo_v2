@@ -2,7 +2,9 @@ package Languages;
 
 import DB.Facade;
 import Entity.Book;
+import Entity.Customer;
 import Methods.Books;
+import Methods.Customers;
 import MyUtil.UserInput;
 
 import java.util.List;
@@ -11,10 +13,13 @@ public class Danish implements LanguageController {
 
     private static final String bullet = "\u2022";
     private List<Book> bookList = Facade.fetchBooks();
+    private List<Customer>customerList = Facade.fetchCustomers();
+
 
     private static final Books books = new Books();
+    private static final Customers c = new Customers();
 //    private static BookRentals bookRentals = new BookRentals();
-//    private static Customers customers = new Customers();
+
 
     @Override
     public void allMenus() {
@@ -46,17 +51,15 @@ public class Danish implements LanguageController {
                 "\n" + bullet + " 1 = Tilføj Kunde" +
                 "\n" + bullet + " 2 = Opdater Kundeinformation" +
                 "\n" + bullet + " 3 = Slet Kunde" +
-                "\n" + bullet + " 4 = Vis alle registreret Kundenavne" +
-                "\n" + bullet + " 5 = Vis alt registreret KundeData\n";
+                "\n" + bullet + " 4 = Vis alt registreret KundeData\n";
 
         try {
             input = UserInput.getInt(s);
             switch (input) {
-                case 1 -> System.out.println("addCustomer");
-                case 2 -> System.out.println("updateCustomer");
-                case 3 -> System.out.println("deleteCustomer");
-                case 4 -> System.out.println("showCustomerNames");
-                case 5 -> System.out.println("showAllCustomerData");
+                case 1 -> c.addCustomer();
+                case 2 -> c.updateCustomer(customerList);
+                case 3 -> c.deleteCustomer();
+                case 4 -> c.showCustomers(customerList);
                 default -> System.out.println("Fejl i input -- Venligst prøv igen..");
             }
         } catch (Exception e) {

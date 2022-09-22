@@ -2,18 +2,22 @@ package Languages;
 
 import DB.Facade;
 import Entity.Book;
+import Entity.Customer;
 import Methods.Books;
+import Methods.Customers;
 import MyUtil.UserInput;
 
 import java.util.List;
 
 public class French implements LanguageController {
     private List<Book> bookList = Facade.fetchBooks();
+    private List<Customer>customerList = Facade.fetchCustomers();
+
 
     private static final String bullet = "\u2022";
     private static final Books books = new Books();
+    private static final Customers c = new Customers();
 //    private static final BookRentals bookRentals = new BookRentals();
-//    private static final Customers customers = new Customers();
 
 
     @Override
@@ -46,18 +50,16 @@ public class French implements LanguageController {
                 "\n" + bullet + " 1 = Ajouter un client" +
                 "\n" + bullet + " 2 = J'aime manger des saucisses au petit déjeuner" +      //The French menu shown to the customer
                 "\n" + bullet + " 3 = Éloigne-toi de ma vue" +
-                "\n" + bullet + " 4 = Je pense que les girafes devraient être considérées comme des oiseaux" +
-                "\n" + bullet + " 5 = Montrez-moi le contenu de votre peuple de gressins\n";
+                "\n" + bullet + " 4 = Montrez-moi le contenu de votre peuple de gressins\n";
 
 
         try {
             input = UserInput.getInt(s);
             switch (input) {
-                case 1 -> System.out.println("addCustomer");
-                case 2 -> System.out.println("updateCustomer");
-                case 3 -> System.out.println("deleteCustomer");
-                case 4 -> System.out.println("showCustomerNames");
-                case 5 -> System.out.println("showAllCustomerData");
+                case 1 -> c.addCustomer();
+                case 2 -> c.updateCustomer(customerList);
+                case 3 -> c.deleteCustomer();
+                case 4 -> c.showCustomers(customerList);
                 default -> System.out.println("Tu as merdé, espèce d'œuf. réessayer");
             }
         } catch (Exception e) {

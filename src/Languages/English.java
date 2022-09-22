@@ -2,21 +2,25 @@ package Languages;
 
 import DB.Facade;
 import Entity.Book;
+import Entity.Customer;
 import Methods.Books;
+import Methods.Customers;
 import MyUtil.UserInput;
-
+import java.sql.SQLException;
 import java.util.List;
 
 public class English implements LanguageController {
 
     private List<Book> bookList = Facade.fetchBooks();
+    private List<Customer>customerList = Facade.fetchCustomers();
     private static final String bullet = "\u2022";
     private static final Books books = new Books();
+    private static final Customers c = new Customers();
 //    private static final BookRentals bookRentals = new BookRentals();
-//    private static final Customers customers = new Customers();
+
 
     @Override
-    public void allMenus() {
+    public void allMenus() throws SQLException {
         int input;
         String s = "\nMain Menu - Library" +
                 "\nWhich menu do you want to go to?" +
@@ -35,30 +39,28 @@ public class English implements LanguageController {
     }
 
     @Override
-    public void customerMenu() {
+    public void customerMenu() throws SQLException {
         int input;
         String s = "\nCustomer Menu: " +
                 "\n" + bullet + " 1 = add a customer" +
                 "\n" + bullet + " 2 = update a customer" +
                 "\n" + bullet + " 3 = delete a customer" +
-                "\n" + bullet + " 4 = show all customer names" +
-                "\n" + bullet + " 5 = show all customer data\n";
+                "\n" + bullet + " 4 = show all customer data\n";
 
 
         input = UserInput.getInt(s);
         switch (input) {
-            case 1 -> System.out.println("addCustomer");
-            case 2 -> System.out.println("updateCustomer");
-            case 3 -> System.out.println("deleteCustomer");
-            case 4 -> System.out.println("showCustomerNames");
-            case 5 -> System.out.println("showAllCustomerData");
+            case 1 -> c.addCustomer();
+            case 2 -> c.updateCustomer(customerList);
+            case 3 -> c.deleteCustomer();
+            case 4 -> c.showCustomers(customerList);
             default -> System.out.println("Something went wrong.. Try again");
         }
         allMenus();
     }
 
     @Override
-    public void booksMenu() {
+    public void booksMenu() throws SQLException {
         int input;
         String s = "\nMethods.Books Menu: " +
                 "\n" + bullet + " 1 = add new book" +

@@ -35,24 +35,27 @@ public class Customer {
         return customerName;
     }
 
-    public void setCustomerName(String customerName) {
+    public String setCustomerName(String customerName) {
         this.customerName = customerName;
+        return customerName;
     }
 
     public int getPostalCode() {
         return postalCode;
     }
 
-    public void setPostalCode(int postalCode) {
+    public int setPostalCode(int postalCode) {
         this.postalCode = postalCode;
+        return postalCode;
     }
 
     public String getAddress() {
         return Address;
     }
 
-    public void setAddress(String address) {
+    public String setAddress(String address) {
         Address = address;
+        return address;
     }
 
     @Override

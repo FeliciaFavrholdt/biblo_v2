@@ -2,6 +2,7 @@ package DB;
 
 import DB.ConnectionConfiguration;
 import Entity.Book;
+import Entity.Customer;
 import MyUtil.UserInput;
 
 import java.sql.*;
@@ -78,7 +79,7 @@ public class BookMapper {
         return "A book with the id " + "\"" + bookID + "\"" + " was not found";
     }
 
-    public static String updateBooks(Book book) throws SQLException {
+    protected static String updateBooks(Book book) throws SQLException {
         String sql = "update Books set Title = ?, Author = ?, ReleaseYear = ?, version = ? where BookID = ?";
 
         try (Connection con = ConnectionConfiguration.getConnection();
@@ -93,8 +94,7 @@ public class BookMapper {
                 int result = ps.executeUpdate();
 
                 if (result > 0) {
-                    System.out.println("The book's title has now been updated to"
-                            + "'" + book.getTitle() + "'");
+                    System.out.println("The book's data has now been updated");
                 }
             } catch (Exception e) {
                 e.printStackTrace();

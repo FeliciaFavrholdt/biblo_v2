@@ -3,9 +3,7 @@ package Methods;
 import DB.Facade;
 import Entity.Book;
 import MyUtil.UserInput;
-
 import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Books {
@@ -34,5 +32,4 @@ public class Books {
                 UserInput.getInt("Insert version"));
         System.out.println("You have now added the book \n" + Facade.addBook(book).toString());
     }
-
 }

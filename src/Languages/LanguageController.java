@@ -11,10 +11,10 @@ public interface LanguageController {
     // between the different languages by implementing itself into
     // the different language classes.
 
-    void allMenus();
-    void customerMenu();
+    void allMenus() throws SQLException;
+    void customerMenu() throws SQLException;
 
-    void booksMenu();
+    void booksMenu() throws SQLException;
 
     void bookRentalMenu();
 }

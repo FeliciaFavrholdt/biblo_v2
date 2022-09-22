@@ -2,6 +2,8 @@ package DB;
 
 import DB.ConnectionConfiguration;
 import Entity.Customer;
+import MyUtil.UserInput;
+
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -73,4 +75,28 @@ public class CustomerMapper {
         }
         return "A customer with the id " + "\"" + customerID + "\"" + " was not found";
     }
+
+    public static String updateCustomer(Customer c) throws SQLException {
+        String sql = "update Customers set CustomerName = ?, PostalCode = ?, Address = ? where CustomerID = ?";
+
+        try (Connection con = ConnectionConfiguration.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+
+            try {
+                ps.setInt(4, UserInput.getInt("Which customer ID should be updated?"));
+                ps.setString(1, c.setCustomerName(UserInput.getString("Update Name")));
+                ps.setInt(2, c.setPostalCode(UserInput.getInt("Update postal code")));
+                ps.setString(3, c.setAddress(UserInput.getString("Update Address")));
+                int result = ps.executeUpdate();
+
+                if (result > 0) {
+                    System.out.println("The customer data has now been updated");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return "A book with this ID does not exist.";
+    }
 }
+
