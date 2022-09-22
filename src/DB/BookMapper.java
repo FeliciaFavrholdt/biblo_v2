@@ -12,7 +12,6 @@ import java.util.List;
 public class BookMapper {
 
     protected static Book addBook(Book book) throws SQLException {
-
         String sql = "INSERT INTO Books (Author, Title, ReleaseYear, Version) VALUES (?, ?, ?, ?)";
 
         try (Connection con = ConnectionConfiguration.getConnection();
@@ -34,7 +33,9 @@ public class BookMapper {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+            ConnectionConfiguration.closeConnection(con);
             return book;
+
         }
     }
 
@@ -57,6 +58,7 @@ public class BookMapper {
                 Book book = new Book(bookID, title, author, releaseYear, version);
                 bookList.add(book);
             }
+            ConnectionConfiguration.closeConnection(con);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -73,6 +75,7 @@ public class BookMapper {
             if (res > 0) {
                 System.out.println("Book with ID " + "\"" + bookID + "\"" + " has now been deleted");
             }
+            ConnectionConfiguration.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -96,6 +99,7 @@ public class BookMapper {
                 if (result > 0) {
                     System.out.println("The book's data has now been updated");
                 }
+                ConnectionConfiguration.closeConnection(con);
             } catch (Exception e) {
                 e.printStackTrace();
             }
