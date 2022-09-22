@@ -10,5 +10,6 @@ public class Views {
 
     public void showAllViews() throws SQLException {
         views.RentedBooksView();
+        views.rentedBooksInXX();
     }
 }

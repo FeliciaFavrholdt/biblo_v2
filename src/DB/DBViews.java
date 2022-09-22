@@ -28,4 +28,18 @@ public class DBViews {
             throw new RuntimeException(e);
         }
     }
+
+    public void rentedBooksInXX() {
+        String sql = "create view rentedBooksInLyngby as " +
+                "select * FROM bookrental INNER JOIN city " +
+                "WHERE PostalCode = '2800'";
+
+        try (Connection con = ConnectionConfiguration.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
