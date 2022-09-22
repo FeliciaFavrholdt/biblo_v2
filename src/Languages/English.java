@@ -3,6 +3,7 @@ package Languages;
 import DB.Facade;
 import Entity.Book;
 import Entity.Customer;
+import Methods.BookRentals;
 import Methods.Books;
 import Methods.Customers;
 import MyUtil.UserInput;
@@ -16,7 +17,7 @@ public class English implements LanguageController {
     private static final String bullet = "\u2022";
     private static final Books books = new Books();
     private static final Customers c = new Customers();
-//    private static final BookRentals bookRentals = new BookRentals();
+    private static final BookRentals bookRentals = new BookRentals();
 
 
     @Override
