@@ -1,6 +1,7 @@
 package DB;
 
 import Entity.Book;
+import Entity.BookRental;
 import Entity.Customer;
 
 import java.sql.SQLException;
@@ -41,6 +42,7 @@ public class Facade {
     public static String updateCustomers(Customer c, int customerID) throws SQLException {
         return CustomerMapper.updateCustomer(c);
     }
+
 
 
     //BOOK RENTALS
