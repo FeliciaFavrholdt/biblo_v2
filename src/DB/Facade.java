@@ -42,8 +42,13 @@ public class Facade {
     public static String updateCustomers(Customer c, int customerID) throws SQLException {
         return CustomerMapper.updateCustomer(c);
     }
-
-
-
     //BOOK RENTALS
+    public static BookRental addBookRental(BookRental bookRental) throws SQLException {
+        return BookRentalMapper.addBookRental(bookRental);
+    }
+
+
+    public static List<BookRental> fetchBookRentals() {
+        return BookRentalMapper.fetchBookRentals();
+    }
 }
