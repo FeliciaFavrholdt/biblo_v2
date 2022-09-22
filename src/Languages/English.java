@@ -2,7 +2,9 @@ package Languages;
 
 import DB.Facade;
 import Entity.Book;
+import Entity.BookRental;
 import Entity.Customer;
+import Methods.BookRentals;
 import Methods.Books;
 import Methods.Customers;
 import MyUtil.UserInput;
@@ -13,10 +15,12 @@ public class English implements LanguageController {
 
     private List<Book> bookList = Facade.fetchBooks();
     private List<Customer>customerList = Facade.fetchCustomers();
+
+    private List<BookRental>bookRentalList = Facade.fetchBookRentals();
     private static final String bullet = "\u2022";
     private static final Books books = new Books();
     private static final Customers c = new Customers();
-//    private static final BookRentals bookRentals = new BookRentals();
+    private static final BookRentals bookRentals = new BookRentals();
 
 
     @Override
@@ -92,10 +96,8 @@ public class English implements LanguageController {
         input = UserInput.getInt(s);
         try {
             switch (input) {
-                case 1 -> System.out.println("bookRental");
-                case 2 -> System.out.println("showBooksRentedView");
-                case 3 -> System.out.println("returnBook");
-                case 4 -> System.out.println("deleteBookRental");
+                case 1 -> bookRentals.addBookRental();
+                case 2 -> bookRentals.showBookRentals(bookRentalList);
                 default -> System.out.println("Something went wrong.. Try again");
             }
         } catch (Exception e) {
