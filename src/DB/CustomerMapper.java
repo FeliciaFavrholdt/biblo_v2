@@ -32,6 +32,7 @@ public class CustomerMapper {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+            ConnectionConfiguration.closeConnection(con);
             return customer;
         }
     }
@@ -55,6 +56,7 @@ public class CustomerMapper {
                 Customer customer = new Customer(customerID, customerName, postalCode, address);
                 customerList.add(customer);
             }
+            ConnectionConfiguration.closeConnection(con);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -70,6 +72,7 @@ public class CustomerMapper {
             if (res > 0) {
                 return "Customer with ID " + "\"" + customerID + "\"" + " has now been deleted";
             }
+            ConnectionConfiguration.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -92,6 +95,7 @@ public class CustomerMapper {
                 if (result > 0) {
                     System.out.println("The customer data has now been updated");
                 }
+                ConnectionConfiguration.closeConnection(con);
             } catch (Exception e) {
                 e.printStackTrace();
             }

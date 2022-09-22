@@ -56,6 +56,7 @@ public class BookRentalMapper {
                 BookRental bookRental = new BookRental(bookRentalID, customersID, bookID, date);
                 bookRentalList.add(bookRental);
             }
+            ConnectionConfiguration.closeConnection(con);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -71,6 +72,7 @@ public class BookRentalMapper {
             if (res > 0) {
                 return "Book rental with ID " + "\"" + bookRentalID + "\"" + " has now been deleted";
             }
+            ConnectionConfiguration.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
         }
