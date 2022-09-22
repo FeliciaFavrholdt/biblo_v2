@@ -2,6 +2,7 @@ package Languages;
 
 import DB.Facade;
 import Entity.Book;
+import Entity.BookRental;
 import Entity.Customer;
 import Methods.BookRentals;
 import Methods.Books;
@@ -14,7 +15,7 @@ public class French implements LanguageController {
     private List<Book> bookList = Facade.fetchBooks();
     private List<Customer>customerList = Facade.fetchCustomers();
 
-
+    private List<BookRental>bookRentalList = Facade.fetchBookRentals();
     private static final String bullet = "\u2022";
     private static final Books books = new Books();
     private static final Customers c = new Customers();
@@ -104,8 +105,8 @@ public class French implements LanguageController {
         input = UserInput.getInt(s);
         try {
             switch (input) {
-                case 1 -> System.out.println("bookRental");
-                case 2 -> System.out.println("showBooksRentedView");
+                case 1 -> bookRentals.addBookRental();
+                case 2 -> bookRentals.showBookRentals(bookRentalList);
                 default -> System.out.println("Réessaye mon dieu");
             }
         } catch (Exception e) {

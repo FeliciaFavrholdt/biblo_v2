@@ -11,11 +11,18 @@ import java.util.List;
 public class BookRentals {
 
     public void addBookRental() throws SQLException {
-        BookRental bookRental = new BookRental(
-                UserInput.getInt("Insert CostumerID"),
-                UserInput.getInt("Insert BookID"),
-                UserInput.getString("Insert date!")
-        );
+        List list = Facade.fetchCustomers();
+        for (Object o : list) {
+            System.out.println(o);
+        }
+                int costumerID = UserInput.getInt("Insert CostumerID");
+        list = Facade.fetchBooks();
+        for (Object o : list) {
+            System.out.println(o);
+        }
+                int bookId = UserInput.getInt("Insert BookID");
+                String date = UserInput.getString("Insert date!");
+        BookRental bookRental = new BookRental(costumerID,bookId,date);
         System.out.println("Rental data: " + Facade.addBookRental(bookRental));
     }
 
