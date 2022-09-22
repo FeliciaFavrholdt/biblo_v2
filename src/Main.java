@@ -1,3 +1,4 @@
+import DB.DBViews;
 import DB.Facade;
 import Entity.Book;
 import Languages.Danish;
@@ -15,7 +16,6 @@ public class Main {
     private static LanguageController languageController;
 
     public static void main(String[] args) throws SQLException {
-
         mainMenu("");
         languageController.allMenus();
     }
